@@ -1,5 +1,5 @@
 require 'mkmf'
-if pkg_config('xmlsec1-openssl')
+if pkg_config('xmlsec1-openssl') || pkg_config('libxmlsec1')
 	# The rightscale image appears to have incorrect
 	# pkg-config files - this flag is needed to link against an 
 	# 64-bit libxmlsec1 but isn't included in the pkg-config 
