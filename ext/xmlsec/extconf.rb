@@ -1,10 +1,6 @@
 require 'mkmf'
-if pkg_config('xmlsec1-openssl')
-	# The rightscale image appears to have incorrect
-	# pkg-config files - this flag is needed to link against an 
-	# 64-bit libxmlsec1 but isn't included in the pkg-config 
-	if `uname -p`.match 'x86_64'
-		$CFLAGS += " -DXMLSEC_NO_SIZE_T"
-	end
-end
+
+# Hack to get this to work on OSX
+$CFLAGS = '-I/usr/local/Cellar/libxmlsec1/1.2.18/include/xmlsec1 -I/usr/local/Cellar/libxml2/2.8.0/include/libxml2 -DXMLSEC_CRYPTO_OPENSSL'
+
 create_makefile('xmlsec')
